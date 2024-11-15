@@ -7,6 +7,8 @@ export const deletePost = (postId) => {
     console.log("click");
     e.preventDefault();
     try {
+      const result = confirm("정말로 삭제하시겠습니까?");
+      console.log(result);
       await request({ method: "DELETE" }, postId);
       navigate("/");
     } catch (error) {

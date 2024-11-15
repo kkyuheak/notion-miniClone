@@ -83,11 +83,19 @@ export const posts = async (documentId) => {
   const breadCrumbCon = document.querySelector(".breadCrumb");
 
   if (pathArr.length) {
-    pathArr.forEach((title) => {
+    pathArr.forEach(([title, id]) => {
       console.log(title);
-      breadCrumbCon.innerHTML += `<li><a href=>${title}</a></li>`;
+      breadCrumbCon.innerHTML += `<li><a href="/documents/${id}" data-id="${id}">${title}</a></li>`;
     });
   }
+
+  breadCrumbCon.querySelectorAll("li").forEach((liEl) => {
+    liEl.addEventListener("click", (e) => {
+      e.preventDefault();
+      const postId = e.target.getAttribute("data-id");
+      navigate(`/documents/${postId}`);
+    });
+  });
 
   // 자식 도큐먼트가 있으면 list를 추가합니다.
   const getSubLinksEl = document.querySelector(".subLinks__lists");

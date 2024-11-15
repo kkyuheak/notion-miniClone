@@ -9,11 +9,14 @@ export async function bread(getPostId) {
   function findId(postData, targetId, path = []) {
     for (const post of postData) {
       // 탈출 조건: 현재 데이터의 id가 목표 id와 일치하면 타이틀 반환
-      if (post.id === targetId) return [...path, post.title];
+      if (post.id === targetId) return [...path, [post.title, post.id]];
 
       // documents 배열 탐색하여 재귀 호출
       if (post.documents) {
-        const result = findId(post.documents, targetId, [...path, post.title]);
+        const result = findId(post.documents, targetId, [
+          ...path,
+          [post.title, post.id],
+        ]);
         if (result) return result; // 목표 ID를 찾으면 결과 반환
       }
     }
@@ -23,6 +26,7 @@ export async function bread(getPostId) {
   //배열값 3개만 가져와서 표시
   const pathTitle = (postId) => {
     const path = findId(postData, postId);
+    console.log(path);
     if (path.length === 1) {
       return path;
     } else {
