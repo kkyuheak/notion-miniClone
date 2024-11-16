@@ -1,14 +1,15 @@
 import { request } from "../../api/api.js";
 import { navigate } from "../../spa/spa.js";
+import { newSidePost } from "../newSidePost.js";
 
 export const Sidebar = async () => {
   let html = `
     <aside>
       <div class="upperSidebar">
-        <img src="./assets/profile.svg" alt="프로필이미지" />
+        <img src="/assets/profile.svg" alt="프로필이미지" />
         <span class="isix">ISIX</span>
         <button class="closeSidebarButton">
-          <img src="./assets/double_left.svg" alt="닫기" />
+          <img src="/assets/double_left.svg" alt="닫기" />
         </button>
       </div>
 
@@ -18,7 +19,7 @@ export const Sidebar = async () => {
       <!-- 새 페이지 버튼 -->
       <div class="bottomSidebar">
         <button class="newDocumentButton">
-          <img src="./assets/add.svg" /> 새 페이지
+          <img src="/assets/add.svg" /> 새 페이지
         </button>
       </div>
     </aside>
@@ -59,4 +60,7 @@ export const Sidebar = async () => {
       navigate(`/documents/${doc.id}`);
     });
   });
+
+  const bottomNewButton = document.querySelector(".newDocumentButton");
+  bottomNewButton.addEventListener("click", newSidePost);
 };

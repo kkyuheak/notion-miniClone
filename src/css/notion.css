@@ -31,15 +31,6 @@ a:visited {
   text-decoration: none;
 }
 
-/* aside */
-aside {
-  width: 337px;
-  background-color: #eef4f9;
-  box-shadow: 4px 0px 8px 0px rgba(0, 0, 0, 0.1);
-  z-index: 200;
-  /* nav 위로 사이드바를 올림 */
-}
-
 /* main */
 main {
   display: flex;
