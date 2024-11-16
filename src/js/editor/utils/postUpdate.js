@@ -1,5 +1,6 @@
 import { request } from "../../api/api.js";
-import { loadTitles } from "../../spa/spa.js";
+import { Sidebar } from "../../sidebar/components/Sidebar.js";
+// import { loadTitles } from "../../spa/spa.js";
 import { getPostData } from "./getPostData.js";
 
 export const upDatePost = async (data, postId) => {
@@ -48,7 +49,8 @@ export const postTitleContentUpdate = async (postId) => {
       setTimeout(() => {
         saveBoxEl.classList.remove("on");
       }, 2000);
-      loadTitles();
+      // loadTitles();
+      Sidebar();
 
       const pElement = document.createElement("p");
       pElement.classList.add("subLinks__title"); // p 태그에 클래스 추가 (필요할 경우)

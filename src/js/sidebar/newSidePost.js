@@ -1,4 +1,5 @@
-import { navigate, loadTitles } from "../spa/spa.js";
+import { navigate } from "../spa/spa.js";
+import { Sidebar } from "./components/Sidebar.js";
 
 const bottomNewButton = document.querySelector(".newDocumentButton");
 
@@ -26,7 +27,8 @@ const newSidePost = async () => {
 
     // 도큐먼트 생성하고나서 사이드바 새로 로드
     setTimeout(() => {
-      loadTitles();
+      // loadTitles();
+      Sidebar();
     }, 0);
     console.log("New Document", data);
   } catch (error) {
