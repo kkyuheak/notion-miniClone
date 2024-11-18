@@ -1,3 +1,4 @@
+import { request } from "../api/api.js";
 import { navigate } from "../spa/spa.js";
 
 document.addEventListener("click", async (event) => {
@@ -31,19 +32,24 @@ document.addEventListener("click", async (event) => {
     };
 
     try {
-      const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
+      // const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
+      //   method: "POST",
+      //   headers: {
+      //     "x-username": "isix",
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(newChildPost),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+      // const data = await response.json();
+
+      const data = await request({
         method: "POST",
-        headers: {
-          "x-username": "isix",
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(newChildPost),
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
 
       //DOM에 자식 요소 추가
       const childElement = document.createElement("li");
@@ -81,9 +87,9 @@ document.addEventListener("click", async (event) => {
       childList.appendChild(childElement);
 
       // 아코디언 토글 상태 유지(NEW 작성 추가!!!)
-      const toggleButton = upperPost.querySelector(".rotateButton");
+      const toggleButton = document.querySelector(".rotateButton");
       if (toggleButton) {
-        toggleButton.classList.add("rotate"); // addButton 클릭 시 항상 회전 상태 유지
+        toggleButton.classList.toggle("rotate"); // addButton 클릭 시 항상 회전 상태 유지
       }
 
       // 하위 도큐먼트 생성하자마자 이동

@@ -1,6 +1,7 @@
 import { request } from "../../api/api.js";
 import { navigate } from "../../spa/spa.js";
 import { newSidePost } from "../newSidePost.js";
+import { sideNewBtn } from "../utils/sideNewBtn.js";
 
 export const Sidebar = async () => {
   let html = `
@@ -19,7 +20,8 @@ export const Sidebar = async () => {
       <!-- 새 페이지 버튼 -->
       <div class="bottomSidebar">
         <button class="newDocumentButton">
-          <img src="/assets/add.svg" /> 새 페이지
+          <img src="/assets/add.svg" /> 
+          <p class="new__title">새 페이지</p>
         </button>
       </div>
     </aside>
@@ -63,4 +65,32 @@ export const Sidebar = async () => {
 
   const bottomNewButton = document.querySelector(".newDocumentButton");
   bottomNewButton.addEventListener("click", newSidePost);
+
+  const sidebar = document.querySelector("aside");
+  const closeSidebarButton = document.querySelector(".closeSidebarButton");
+  const openSidebarButton = document.querySelector(".openSidebarButton");
+
+  // 사이드바 닫기
+  closeSidebarButton.addEventListener("click", () => {
+    sidebar.classList.add("closed"); // 사이드바 닫기
+    openSidebarButton.classList.remove("hidden"); // 햄버거 버튼 보이기
+  });
+
+  // 사이드바 열기
+  openSidebarButton.addEventListener("click", () => {
+    sidebar.classList.remove("closed"); // 사이드바 열기
+    openSidebarButton.classList.add("hidden"); // 햄버거 버튼 숨기기
+  });
+
+  // 아코디언 토글 상태
+  const toggleButtons = document.querySelectorAll(".rotateButton");
+  console.log(toggleButtons);
+  toggleButtons.forEach((toggleButton) => {
+    toggleButton.addEventListener("click", () => {
+      console.log("a");
+      toggleButton.classList.toggle("rotate");
+    });
+  });
+
+  sideNewBtn();
 };

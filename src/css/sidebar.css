@@ -5,8 +5,9 @@ aside {
   z-index: 200;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  /* padding: 20px; */
   gap: 20px;
+  position: relative;
   /* nav 위로 사이드바를 올림 */
   transition: all 0.3s ease; /*NEW 작성 추가!!오버레이 애니메이션*/
 }
@@ -40,7 +41,7 @@ aside.closed {
 .upperSidebar {
   font-size: 24px;
   font-weight: bold;
-  padding: 10px;
+  padding: 10px 15px;
   display: flex; /* 플렉스 레이아웃 활성화 */
   align-items: center; /* 수직 중앙 정렬 */
   justify-content: space-between; /* 좌우 끝에 배치 */
@@ -48,6 +49,7 @@ aside.closed {
 }
 .isix {
   color: #53738e;
+  cursor: pointer;
 }
 .openSidebarButton {
   background-color: transparent;
@@ -57,18 +59,23 @@ aside.closed {
 }
 /* 추가되는 document 세트*/
 .rotateAndPage {
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: 0px;
+  border-radius: 20px;
+  padding: 10px 5px;
 }
 /* document 항목 스타일 */
+.documentList {
+  padding: 15px 10px;
+}
+
 .documentItem {
+  height: 30px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding-top: 5px;
-  padding-bottom: 0px;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 17px;
   font-family: "Pretendard", sans-serif;
   color: #53738e;
@@ -122,28 +129,37 @@ a {
 }
 /* 새 페이지 버튼 */
 .bottomSidebar {
-  margin-top: auto;
-  margin-bottom: 26px;
-  display: flex; /* 플렉스 레이아웃 활성화 */
-  justify-content: flex-start; /* 왼쪽 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   border-top: 1px solid rgba(83, 115, 142, 0.3); /* 투명도 30% 적용 */
-  padding: 10px 0; /* 여백을 추가하여 중앙 정렬이 잘 되도록 설정 */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .newDocumentButton {
-  display: flex; /* 플렉스 레이아웃 활성화 */
-  align-items: center; /* 수직 중앙 정렬 */
-  justify-content: center; /* 수평 중앙 정렬 */
+  width: 100%;
+  padding: 5px 10px; /* 텍스트와 이미지 간의 간격을 설정 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2px;
   border: 0;
+  border-radius: 10px;
   background-color: transparent;
   color: #53738e;
   cursor: pointer;
-  padding: 5px 10px; /* 텍스트와 이미지 간의 간격을 설정 */
 }
-.newDocumentBotton img {
-  margin-right: 8px; /* 이미지와 텍스트 간의 간격 설정 */
+
+.newDocumentButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.new__title {
+  font-size: 14px;
 }
 
 .rotateAndPage:hover {
-  background-color: rgba(83, 115, 142, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
