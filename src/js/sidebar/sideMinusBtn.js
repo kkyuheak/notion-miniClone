@@ -26,23 +26,23 @@ document.addEventListener("click", async (event) => {
   }
 
   // Toggle 버튼 클릭 동작
-  if (event.target.closest(".rotateButton")) {
-    const toggleButton = event.target.closest(".rotateButton");
-    const upperPost = toggleButton.closest(".documentItem");
-    const childList = upperPost.querySelector(".documentList");
+  // if (event.target.closest(".rotateButton")) {
+  //   const toggleButton = event.target.closest(".rotateButton");
+  //   const upperPost = toggleButton.closest(".documentItem");
+  //   const childList = upperPost.querySelector(".documentList");
 
-    toggleButton.classList.toggle("rotate");
+  //   toggleButton.classList.toggle("rotate");
 
-    if (childList) {
-      if (childList.style.display === "none" || !childList.style.display) {
-        childList.style.display = "block";
-        toggleButton.classList.add("rotate");
-      } else {
-        childList.style.display = "none";
-        toggleButton.classList.remove("rotate");
-      }
-    }
-  }
+  //   if (childList) {
+  //     if (childList.style.display === "none" || !childList.style.display) {
+  //       childList.style.display = "block";
+  //       toggleButton.classList.add("rotate");
+  //     } else {
+  //       childList.style.display = "none";
+  //       toggleButton.classList.remove("rotate");
+  //     }
+  //   }
+  // }
 });
 
 // 문서와 하위 문서 삭제 함수

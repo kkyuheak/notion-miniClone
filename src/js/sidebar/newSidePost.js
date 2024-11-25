@@ -1,39 +1,39 @@
+import { request } from "../api/api.js";
 import { navigate } from "../spa/spa.js";
 import { Sidebar } from "./components/Sidebar.js";
 
-const bottomNewButton = document.querySelector(".newDocumentButton");
+export const newSidePost = async () => {
+  const upperPost = {
+    title: "제목 없음",
+    parent: null,
+  };
 
-const newSidePost = async () => {
-  try {
-    const upperPost = {
-      title: "제목 없음",
-      parent: null,
-    };
-    const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
-      method: "POST",
-      headers: {
-        "x-username": "isix",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(upperPost),
-    });
+  const data = await request({
+    method: "Post",
+    body: JSON.stringify(upperPost),
+  });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
+  const documentList = document.querySelector(".documentList");
+  const newLi = document.createElement("li");
+  newLi.classList.add("documentItem");
 
-    navigate(`/documents/${data.id}`);
+  newLi.innerHTML = `
+        <div class="rotateAndPage">
+          <button class="rotateButton">
+            <img src="/assets/right_arrow.svg" />
+          </button>
+          <a href="/documents/${data.id}" class="documentTitle">${data.title}</a>
+          <div class="documentButton">
+            <button class="addButton"><img src="/assets/add.svg" /></button>
+            <button class="removeButton">
+              <img src="/assets/remove.png" />
+            </button>
+          </div>
+        </div>
+      `;
 
-    // 도큐먼트 생성하고나서 사이드바 새로 로드
-    setTimeout(() => {
-      // loadTitles();
-      Sidebar();
-    }, 0);
-    console.log("New Document", data);
-  } catch (error) {
-    console.error("API 요청 중 오류 발생:", error.message);
-  }
+  documentList.appendChild(newLi);
+
+  navigate(`/documents/${data.id}`);
+  console.log("New Document", data);
 };
-
-bottomNewButton.addEventListener("click", newSidePost);
